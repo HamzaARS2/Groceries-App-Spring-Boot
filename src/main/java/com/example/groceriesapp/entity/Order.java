@@ -1,13 +1,17 @@
 package com.example.groceriesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -25,8 +29,11 @@ public class Order{
     @NonNull
     @Column(name = "total_price")
     private BigDecimal totalPrice;
-    @NonNull
+    @CreationTimestamp
+    @ColumnDefault("CURRENT_TIMESTAMP")
     private Timestamp timestamp;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
 
 }
 
