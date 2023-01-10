@@ -18,6 +18,6 @@ public class Category {
     private Integer id;
     @NonNull
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoryId", cascade = CascadeType.ALL)
     private List<Product> products;
 }

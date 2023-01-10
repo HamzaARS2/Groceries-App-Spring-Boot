@@ -5,11 +5,13 @@ import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.CategoryService;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     private ProductService service;
@@ -17,33 +19,27 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/products")
+    @GetMapping
     public List<Product> findAllProducts() {
         return service.getProducts();
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/add")
     public Product addProduct(@RequestBody Product product) {
-        Category category = categoryService.getCategoryById(product.getCategoryId());
-        product.setCategory(category);
         return service.insertProduct(product);
     }
 
-    @PostMapping("/products/add")
-    public List<Product> addProducts(@RequestBody List<Product> products) {
-        for (Product product: products) {
-            Category category = categoryService.getCategoryById(product.getCategoryId());
-            product.setCategory(category);
-        }
-        return service.insertProducts(products);
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+        return service.updateProduct(id,product);
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public Product findProductById(@PathVariable Integer id) {
         return service.getProductById(id);
     }
 
-    @DeleteMapping("/product/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Integer id) {
         return service.deleteProduct(id);
     }

@@ -32,7 +32,7 @@ public class Order{
     @CreationTimestamp
     @ColumnDefault("CURRENT_TIMESTAMP")
     private Timestamp timestamp;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderId", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
 }

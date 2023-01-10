@@ -15,18 +15,16 @@ public class Product {
     @Id @GeneratedValue
     private Integer id;
     @NonNull
-    @Column(name = "category_id",insertable=false, updatable=false)
+    @Column(name = "category_id")
     private Integer categoryId;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
     @NonNull
     private String name;
     @NonNull
     private String description;
     @NonNull
     private BigDecimal price;
-    @NonNull
-    private Integer quantity;
+    private String priceUnit;
+    private String nutrition;
+    private String image;
 
 }

@@ -20,12 +20,28 @@ public class CustomerController {
 
     @PostMapping("/customer/add")
     public Customer addCustomer(@RequestBody Customer customer) {
+
+        return service.insertCustomer(customer);
+    }
+
+    @PostMapping("/customer/register")
+    public Customer registerCustomer(@RequestBody Customer customer) {
         return service.insertCustomer(customer);
     }
 
     @GetMapping("/customers/{id}")
     public Customer findCustomerById(@PathVariable Integer id) {
         return service.getCustomerById(id);
+    }
+
+    @GetMapping("/customer/{docId}")
+    public Customer findCustomerByDocId(@PathVariable String docId) {
+        return service.getCustomerByDocId(docId);
+    }
+
+    @PutMapping
+    public Customer updateCustomerByDocId(@PathVariable String docId) {
+        return service.updateCustomer(docId);
     }
 
     @DeleteMapping("/delete/{id}")

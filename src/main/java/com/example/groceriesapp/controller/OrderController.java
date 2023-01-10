@@ -10,33 +10,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
     @Autowired
     private OrderService service;
 
 
 
-    @GetMapping("/orders")
+    @GetMapping
     public List<Order> findAllOrders() {
         return service.getOrders();
     }
 
-    @PostMapping("/order/add")
+    @PostMapping("/add")
     public Order addOrder(@RequestBody Order order) {
         return service.insertOrder(order);
     }
 
-    @PostMapping("/orders/add")
-    public List<Order> addOrders(@RequestBody List<Order> orders) {
-        return service.insertOrders(orders);
-    }
 
-    @GetMapping("/orders/{id}")
+    @GetMapping("/{id}")
     public Order findOrderById(@PathVariable Integer id) {
         return service.getOrderById(id);
     }
 
-    @DeleteMapping("/order/delete/{id}")
+    @GetMapping("/customer/{id}")
+    public List<Order> getOrdersByCustomerId(@PathVariable Integer id) {
+        return service.getOrdersByCustomerId(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
     public String deleteOrder(@PathVariable Integer id) {
         return service.deleteOrder(id);
     }

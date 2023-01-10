@@ -25,6 +25,21 @@ public class ProductService {
         return repository.saveAll(products);
     }
 
+    public Product updateProduct(Integer id, Product updatedProduct) {
+        Product product = repository.findById(id).orElse(null);
+        if (product != null) {
+            product.setCategoryId(updatedProduct.getCategoryId());
+            product.setName(updatedProduct.getName());
+            product.setDescription(updatedProduct.getDescription());
+            product.setPrice(updatedProduct.getPrice());
+            product.setPriceUnit(updatedProduct.getPriceUnit());
+            product.setNutrition(updatedProduct.getNutrition());
+            product.setImage(updatedProduct.getImage());
+            return repository.save(product);
+        }
+        return null;
+    }
+
     public Product getProductById(Integer id) {
         return repository.findById(id).orElse(null);
     }

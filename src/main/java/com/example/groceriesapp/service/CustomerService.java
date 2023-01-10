@@ -24,10 +24,17 @@ public class CustomerService {
         return repository.findById(id).orElse(null);
     }
 
+    public Customer updateCustomer(String docId) {
+        // TODO: Update customer method.
+        return null;
+    }
 
     public String deleteCustomer(Integer id) {
         repository.deleteById(id);
         return "Customer deleted Successfully : id = " + id;
     }
 
+    public Customer getCustomerByDocId(String docId) {
+        return repository.findByDocId(docId);
+    }
 }

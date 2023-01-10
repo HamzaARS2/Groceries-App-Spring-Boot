@@ -8,31 +8,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/orderItems")
 public class OrderItemController {
     @Autowired
     private OrderItemService service;
 
-    @GetMapping("/orderItems")
+    @GetMapping
     public List<OrderItem> findAllOrderItems() {
         return service.getOrderItems();
     }
 
-    @PostMapping("/orderItem/add")
+    @PostMapping("/add")
     public OrderItem addOrderItem(@RequestBody OrderItem orderItem) {
         return service.insertOrderItem(orderItem);
     }
 
-    @PostMapping("/orderItems/add")
+    @PostMapping("/addList")
     public List<OrderItem> addOrderItems(@RequestBody List<OrderItem> orderItems) {
         return service.insertOrderItems(orderItems);
     }
 
-    @GetMapping("/orderItems/{id}")
+    @GetMapping("/{id}")
     public OrderItem findOrderItemById(@PathVariable Integer id) {
         return service.getOrderItemById(id);
     }
 
-    @DeleteMapping("/orderItem/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteOrderItem(@PathVariable Integer id) {
         return service.deleteOrderItem(id);
     }

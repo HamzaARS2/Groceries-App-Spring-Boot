@@ -37,6 +37,15 @@ public class CategoryService {
         return repository.saveAll(categories);
     }
 
+    public Category updateCategory(Integer id, Category updatedCategory) {
+        Category category = getCategoryById(id);
+        if (category != null) {
+            category.setName(updatedCategory.getName());
+            return insertCategory(category);
+        }
+        return null;
+    }
+
     public Category getCategoryById(Integer id) {
         return repository.findById(id).orElse(null);
     }

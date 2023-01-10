@@ -1,6 +1,5 @@
 package com.example.groceriesapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,26 +7,30 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "order_items")
-public class OrderItem {
+@Table(name = "on_sale_products")
+public class OnSaleProduct {
+
     @Id @GeneratedValue
     private Integer id;
     @NonNull
-    @Column(name = "order_id")
-    private Integer orderId;
-    @NonNull
-    @Column(name = "product_id")
     private Integer productId;
     @NonNull
-    private Integer quantity;
+    @Column(name = "sale_price")
+    private BigDecimal salePrice;
     @NonNull
-    @Column(name = "subtotal_price")
-    private BigDecimal subTotalPrice;
-
+    @Column(name = "discount_percentage")
+    private BigDecimal discountPercentage;
+    @NonNull
+    @Column(name = "start_date")
+    private Date startDate;
+    @NonNull
+    @Column(name = "end_date")
+    private Date endDate;
 
 }
