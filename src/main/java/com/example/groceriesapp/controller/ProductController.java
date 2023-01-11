@@ -39,6 +39,11 @@ public class ProductController {
         return service.getProductById(id);
     }
 
+    @GetMapping("/exclusive")
+    public List<Product> findExclusiveProducts() {
+        return service.getExclusiveProducts();
+    }
+
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable Integer id) {
         return service.deleteProduct(id);

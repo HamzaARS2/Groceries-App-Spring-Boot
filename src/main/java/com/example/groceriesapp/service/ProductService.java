@@ -44,6 +44,10 @@ public class ProductService {
         return repository.findById(id).orElse(null);
     }
 
+    public List<Product> getExclusiveProducts() {
+        return repository.findByIsExclusiveIsTrue();
+    }
+
 
     public String deleteProduct(Integer id) {
         repository.deleteById(id);

@@ -26,5 +26,7 @@ public class Product {
     private String priceUnit;
     private String nutrition;
     private String image;
+    @Column(name = "is_exclusive")
+    private boolean isExclusive;
 
 }
