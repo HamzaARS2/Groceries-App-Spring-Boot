@@ -1,5 +1,6 @@
 package com.example.groceriesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,9 +29,15 @@ public class OnSaleProduct {
     private BigDecimal discountPercentage;
     @NonNull
     @Column(name = "start_date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startDate;
     @NonNull
     @Column(name = "end_date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date endDate;
+
+    @OneToOne
+    @JoinColumn(name = "productId",insertable=false, updatable=false)
+    private Product product;
 
 }

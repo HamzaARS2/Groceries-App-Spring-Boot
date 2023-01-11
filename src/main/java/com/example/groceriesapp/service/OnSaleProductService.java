@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class OnSaleProductService {
     }
 
     public List<OnSaleProduct> deleteExpiredOnSaleProducts() {
-        List<OnSaleProduct> expiredOnSaleProducts = repository.findByEndDateBefore(LocalDate.now());
+        List<OnSaleProduct> expiredOnSaleProducts = repository.findByEndDateBefore(new Date());
         expiredOnSaleProducts.forEach( expiredOnSaleProduct -> {
             repository.delete(expiredOnSaleProduct);
         });

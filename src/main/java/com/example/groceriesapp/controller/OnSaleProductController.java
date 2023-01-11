@@ -28,4 +28,9 @@ public class OnSaleProductController {
     public String deleteOnSaleProduct(@PathVariable Integer id) {
         return service.deleteOnSaleProduct(id);
     }
+
+    @DeleteMapping("/delete/expired")
+    public List<OnSaleProduct> deleteExpiredOnSaleProducts() {
+        return service.deleteExpiredOnSaleProducts();
+    }
 }

@@ -1,11 +1,9 @@
 package com.example.groceriesapp.controller;
 
-import com.example.groceriesapp.entity.Category;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.CategoryService;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +36,8 @@ public class ProductController {
     public Product findProductById(@PathVariable Integer id) {
         return service.getProductById(id);
     }
+
+
 
     @GetMapping("/exclusive")
     public List<Product> findExclusiveProducts() {
