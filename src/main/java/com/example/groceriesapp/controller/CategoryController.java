@@ -1,7 +1,7 @@
 package com.example.groceriesapp.controller;
 
 import com.example.groceriesapp.entity.Category;
-import com.example.groceriesapp.entity.Product;
+import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +24,7 @@ public class CategoryController {
         return service.insertCategory(Category);
     }
 
-    @GetMapping("/{id}/products")
-    public Category addCategoryProducts(@PathVariable Integer id, @RequestBody List<Product> products) {
-        return service.insertCategoryProducts(id, products);
-    }
+
 
     @GetMapping("/{id}")
     public Category findCategoryById(@PathVariable Integer id) {

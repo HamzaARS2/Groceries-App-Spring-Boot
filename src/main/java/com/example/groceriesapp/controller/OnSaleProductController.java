@@ -1,5 +1,6 @@
 package com.example.groceriesapp.controller;
 
+import com.example.groceriesapp.dto.OnSaleProductDTO;
 import com.example.groceriesapp.entity.OnSaleProduct;
 import com.example.groceriesapp.service.OnSaleProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,15 @@ public class OnSaleProductController {
     @Autowired
     private OnSaleProductService service;
 
-    @GetMapping()
-    public List<OnSaleProduct> findAllOnSaleProducts() {
+    @GetMapping
+    public List<OnSaleProductDTO> findAllOnSaleProducts() {
         return service.getOnSaleProducts();
     }
+
+//    @GetMapping
+//    public List<OnSaleProduct> findAllOnSaleProducts() {
+//        return null;
+//    }
 
     @PostMapping("/publish")
     public OnSaleProduct saveOnSaleProduct(@RequestBody OnSaleProduct onSaleProduct) {

@@ -1,4 +1,4 @@
-package com.example.groceriesapp.entity;
+package com.example.groceriesapp.dto;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,16 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "categories")
-public class Category {
-    @Id @GeneratedValue
+public class ProductDTO {
     private Integer id;
-    @NonNull
+    private Integer categoryId;
     private String name;
+    private BigDecimal price;
+    private String priceUnit;
+    private String image;
+
 }

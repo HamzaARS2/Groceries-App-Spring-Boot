@@ -1,6 +1,7 @@
 package com.example.groceriesapp.service;
 
-import com.example.groceriesapp.entity.Product;
+import com.example.groceriesapp.dto.ProductDTO;
+import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,20 +14,20 @@ public class ProductService {
     private ProductRepo repository;
 
 
-    public List<Product> getProducts() {
+    public List<ProductDetails> getProductDetails() {
         return repository.findAll();
     }
 
-    public Product insertProduct(Product Product) {
+    public ProductDetails insertProduct(ProductDetails Product) {
         return repository.save(Product);
     }
 
-    public List<Product> insertProducts(List<Product> products) {
+    public List<ProductDetails> insertProducts(List<ProductDetails> products) {
         return repository.saveAll(products);
     }
 
-    public Product updateProduct(Integer id, Product updatedProduct) {
-        Product product = repository.findById(id).orElse(null);
+    public ProductDetails updateProduct(Integer id, ProductDetails updatedProduct) {
+        ProductDetails product = repository.findById(id).orElse(null);
         if (product != null) {
             product.setCategoryId(updatedProduct.getCategoryId());
             product.setName(updatedProduct.getName());
@@ -40,13 +41,14 @@ public class ProductService {
         return null;
     }
 
-    public Product getProductById(Integer id) {
+    public ProductDetails getProductDetailsById(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<Product> getExclusiveProducts() {
+    public List<ProductDTO> getExclusiveProducts() {
         return repository.findByIsExclusiveIsTrue();
     }
+
 
 
 

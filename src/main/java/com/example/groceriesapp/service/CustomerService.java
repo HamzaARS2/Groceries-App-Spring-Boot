@@ -24,8 +24,18 @@ public class CustomerService {
         return repository.findById(id).orElse(null);
     }
 
-    public Customer updateCustomer(String docId) {
-        // TODO: Update customer method.
+    public Customer updateCustomer(Customer updatedCustomer) {
+        Customer customer = repository.findByDocId(updatedCustomer.getDocId());
+        if (customer != null) {
+            System.out.println("updateCustomer not null");
+            customer.setName(updatedCustomer.getName());
+            customer.setEmail(updatedCustomer.getEmail());
+            customer.setPhone(updatedCustomer.getPhone());
+            customer.setAddress(updatedCustomer.getAddress());
+            return repository.save(customer);
+        }
+        System.out.println("updateCustomer null");
+
         return null;
     }
 

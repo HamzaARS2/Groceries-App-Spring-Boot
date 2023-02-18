@@ -14,7 +14,7 @@ import java.io.IOException;
 public class GroceriesAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GroceriesAppApplication.class, args);
-	}
+	} 
 
 
 

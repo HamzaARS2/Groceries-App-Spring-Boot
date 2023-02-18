@@ -1,7 +1,7 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.entity.Category;
-import com.example.groceriesapp.entity.Product;
+import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.repository.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +22,6 @@ public class CategoryService {
         return repository.save(category);
     }
 
-    public Category insertCategoryProducts(Integer id, List<Product> products) throws NullPointerException {
-        Category category = getCategoryById(id);
-        if (category != null) {
-            List<Product> allProducts = category.getProducts();
-            allProducts.addAll(products);
-            category.setProducts(allProducts);
-            return category;
-        }
-        throw new NullPointerException("Category is null");
-    }
 
     public List<Category> insertCategories(List<Category> categories) {
         return repository.saveAll(categories);

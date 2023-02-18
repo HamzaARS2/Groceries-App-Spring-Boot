@@ -1,6 +1,7 @@
 package com.example.groceriesapp.controller;
 
-import com.example.groceriesapp.entity.Product;
+import com.example.groceriesapp.dto.ProductDTO;
+import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.service.CategoryService;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +19,29 @@ public class ProductController {
     private CategoryService categoryService;
 
     @GetMapping
-    public List<Product> findAllProducts() {
-        return service.getProducts();
+    public List<ProductDetails> findAllProducts() {
+        return service.getProductDetails();
     }
 
     @PostMapping("/add")
-    public Product addProduct(@RequestBody Product product) {
+    public ProductDetails addProduct(@RequestBody ProductDetails product) {
         return service.insertProduct(product);
     }
 
     @PutMapping("/update/{id}")
-    public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+    public ProductDetails updateProduct(@PathVariable Integer id, @RequestBody ProductDetails product) {
         return service.updateProduct(id,product);
     }
 
     @GetMapping("/{id}")
-    public Product findProductById(@PathVariable Integer id) {
-        return service.getProductById(id);
+    public ProductDetails findProductById(@PathVariable Integer id) {
+        return service.getProductDetailsById(id);
     }
 
 
 
     @GetMapping("/exclusive")
-    public List<Product> findExclusiveProducts() {
+    public List<ProductDTO> findExclusiveProducts() {
         return service.getExclusiveProducts();
     }
 

@@ -1,11 +1,13 @@
 package com.example.groceriesapp.entity;
 
+import com.example.groceriesapp.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.hibernate.annotations.Formula;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,8 +38,8 @@ public class OnSaleProduct {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date endDate;
 
-    @OneToOne
-    @JoinColumn(name = "productId",insertable=false, updatable=false)
-    private Product product;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "productId",referencedColumnName = "id", insertable = false, updatable = false)
+    private ProductDetails productDetails;
 
 }

@@ -1,6 +1,5 @@
 package com.example.groceriesapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Entity
 @Table(name = "products")
-public class Product {
+public class ProductDetails {
     @Id @GeneratedValue
     private Integer id;
     @NonNull
@@ -19,7 +18,6 @@ public class Product {
     private Integer categoryId;
     @NonNull
     private String name;
-    @NonNull
     private String description;
     @NonNull
     private BigDecimal price;
@@ -28,5 +26,8 @@ public class Product {
     private String image;
     @Column(name = "is_exclusive")
     private boolean isExclusive;
+
+    @NonNull
+    private float rating;
 
 }
