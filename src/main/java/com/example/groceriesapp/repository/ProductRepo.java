@@ -13,4 +13,5 @@ public interface ProductRepo extends JpaRepository<ProductDetails,Integer> {
             "FROM ProductDetails p " +
             "WHERE p.isExclusive = true")
     List<ProductDTO> findByIsExclusiveIsTrue();
+
 }
