@@ -1,5 +1,6 @@
 package com.example.groceriesapp.entity;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,11 @@ import java.util.List;
 public class Category {
     @Id @GeneratedValue
     private Integer id;
-    @NonNull
+
+    @Nonnull
     private String name;
+
+    private String image;
+
+    private String color;
 }

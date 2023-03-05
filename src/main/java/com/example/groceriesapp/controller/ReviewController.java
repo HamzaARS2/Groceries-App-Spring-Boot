@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/api/reviews")
 public class ReviewController {
 
     @Autowired
@@ -19,7 +19,6 @@ public class ReviewController {
     public List<Review> getReviewsByProductId(@PathVariable Integer id) {
         return service.getReviewsByProductId(id);
     }
-
     @PostMapping("/create")
     public Review createReview(@RequestBody Review review) {
         return service.createReview(review);

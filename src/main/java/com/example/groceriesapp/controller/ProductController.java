@@ -2,7 +2,6 @@ package com.example.groceriesapp.controller;
 
 import com.example.groceriesapp.dto.ProductDTO;
 import com.example.groceriesapp.entity.ProductDetails;
-import com.example.groceriesapp.service.CategoryService;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,17 +9,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
     @Autowired
     private ProductService service;
 
-    @Autowired
-    private CategoryService categoryService;
+
+
+    @GetMapping("/details")
+    public List<ProductDetails> findAllProductsDetails() {
+        return service.getProductsDetails();
+    }
 
     @GetMapping
-    public List<ProductDetails> findAllProducts() {
-        return service.getProductDetails();
+    public List<ProductDTO> findAllProducts() {
+        return service.getProducts();
     }
 
     @PostMapping("/add")
@@ -39,10 +42,19 @@ public class ProductController {
     }
 
 
+    @GetMapping("/most_rated")
+    public List<ProductDTO> findMostRatedProducts() {
+        return service.getMostRatedProducts();
+    }
 
     @GetMapping("/exclusive")
     public List<ProductDTO> findExclusiveProducts() {
         return service.getExclusiveProducts();
+    }
+
+    @GetMapping("/search")
+    public List<ProductDTO> searchProductsByName(@RequestParam String query) {
+        return service.searchProductsByName(query);
     }
 
     @DeleteMapping("/delete/{id}")

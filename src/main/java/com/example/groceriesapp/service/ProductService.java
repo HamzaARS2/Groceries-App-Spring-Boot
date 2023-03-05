@@ -14,7 +14,7 @@ public class ProductService {
     private ProductRepo repository;
 
 
-    public List<ProductDetails> getProductDetails() {
+    public List<ProductDetails> getProductsDetails() {
         return repository.findAll();
     }
 
@@ -25,6 +25,11 @@ public class ProductService {
     public List<ProductDetails> insertProducts(List<ProductDetails> products) {
         return repository.saveAll(products);
     }
+
+    public List<ProductDTO> getProducts() {
+        return repository.findAllProducts();
+    }
+
 
     public ProductDetails updateProduct(Integer id, ProductDetails updatedProduct) {
         ProductDetails product = repository.findById(id).orElse(null);
@@ -49,7 +54,13 @@ public class ProductService {
         return repository.findByIsExclusiveIsTrue();
     }
 
+    public List<ProductDTO> getMostRatedProducts() {
+        return repository.findByMostRated();
+    }
 
+    public List<ProductDTO> searchProductsByName(String query) {
+        return repository.findByNameContaining(query);
+    }
 
 
 
