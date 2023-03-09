@@ -36,8 +36,8 @@ public class CartItem {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "productId", referencedColumnName = "id", insertable = false, updatable = false)
+    @OneToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
     private ProductDetails productDetails;
 
 

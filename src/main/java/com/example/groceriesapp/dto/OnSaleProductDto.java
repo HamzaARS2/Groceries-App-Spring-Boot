@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OnSaleProductDTO {
+public class OnSaleProductDto {
 
     private Integer id;
     private Integer productId;
@@ -19,5 +19,5 @@ public class OnSaleProductDTO {
     private Date startDate;
     private Date endDate;
 
-    private ProductDTO productDTO;
+    private ProductDto product;
 }

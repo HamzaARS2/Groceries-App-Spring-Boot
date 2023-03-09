@@ -1,6 +1,6 @@
 package com.example.groceriesapp.controller;
 
-import com.example.groceriesapp.dto.OnSaleProductDTO;
+import com.example.groceriesapp.dto.OnSaleProductDto;
 import com.example.groceriesapp.entity.OnSaleProduct;
 import com.example.groceriesapp.service.OnSaleProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class OnSaleProductController {
     private OnSaleProductService service;
 
     @GetMapping
-    public List<OnSaleProductDTO> findAllOnSaleProducts() {
+    public List<OnSaleProductDto> findAllOnSaleProducts() {
         return service.getOnSaleProducts();
     }
 

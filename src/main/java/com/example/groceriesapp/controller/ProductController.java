@@ -1,6 +1,6 @@
 package com.example.groceriesapp.controller;
 
-import com.example.groceriesapp.dto.ProductDTO;
+import com.example.groceriesapp.dto.ProductDto;
 import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDTO> findAllProducts() {
+    public List<ProductDto> findAllProducts() {
         return service.getProducts();
     }
 
@@ -43,17 +43,17 @@ public class ProductController {
 
 
     @GetMapping("/most_rated")
-    public List<ProductDTO> findMostRatedProducts() {
+    public List<ProductDto> findMostRatedProducts() {
         return service.getMostRatedProducts();
     }
 
     @GetMapping("/exclusive")
-    public List<ProductDTO> findExclusiveProducts() {
+    public List<ProductDto> findExclusiveProducts() {
         return service.getExclusiveProducts();
     }
 
     @GetMapping("/search")
-    public List<ProductDTO> searchProductsByName(@RequestParam String query) {
+    public List<ProductDto> searchProductsByName(@RequestParam String query) {
         return service.searchProductsByName(query);
     }
 

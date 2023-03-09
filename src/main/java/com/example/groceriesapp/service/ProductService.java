@@ -1,6 +1,6 @@
 package com.example.groceriesapp.service;
 
-import com.example.groceriesapp.dto.ProductDTO;
+import com.example.groceriesapp.dto.ProductDto;
 import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class ProductService {
         return repository.saveAll(products);
     }
 
-    public List<ProductDTO> getProducts() {
+    public List<ProductDto> getProducts() {
         return repository.findAllProducts();
     }
 
@@ -50,15 +50,15 @@ public class ProductService {
         return repository.findById(id).orElse(null);
     }
 
-    public List<ProductDTO> getExclusiveProducts() {
+    public List<ProductDto> getExclusiveProducts() {
         return repository.findByIsExclusiveIsTrue();
     }
 
-    public List<ProductDTO> getMostRatedProducts() {
+    public List<ProductDto> getMostRatedProducts() {
         return repository.findByMostRated();
     }
 
-    public List<ProductDTO> searchProductsByName(String query) {
+    public List<ProductDto> searchProductsByName(String query) {
         return repository.findByNameContaining(query);
     }
 

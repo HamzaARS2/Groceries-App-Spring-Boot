@@ -1,7 +1,7 @@
 package com.example.groceriesapp.service;
 
-import com.example.groceriesapp.dto.OnSaleProductDTO;
-import com.example.groceriesapp.dto.ProductDTO;
+import com.example.groceriesapp.dto.OnSaleProductDto;
+import com.example.groceriesapp.dto.ProductDto;
 import com.example.groceriesapp.entity.OnSaleProduct;
 import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.OneSaleProductRepo;
@@ -19,12 +19,12 @@ public class OnSaleProductService {
     private OneSaleProductRepo repository;
 
 
-    public List<OnSaleProductDTO> getOnSaleProducts() {
+    public List<OnSaleProductDto> getOnSaleProducts() {
         List<OnSaleProduct> onSaleProducts = repository.findAll();
-        List<OnSaleProductDTO> onSaleProductDTOS = new ArrayList<>();
+        List<OnSaleProductDto> onSaleProductDTOS = new ArrayList<>();
         for (OnSaleProduct onSaleProduct: onSaleProducts) {
-            ProductDTO productDTO = ProductMapper.toProductDTO(onSaleProduct.getProductDetails());
-            OnSaleProductDTO onSaleProductDTO = new OnSaleProductDTO(
+            ProductDto productDTO = ProductMapper.toProductDTO(onSaleProduct.getProductDetails());
+            OnSaleProductDto onSaleProductDTO = new OnSaleProductDto(
                     onSaleProduct.getId(),
                     onSaleProduct.getProductId(),
                     onSaleProduct.getSalePrice(),

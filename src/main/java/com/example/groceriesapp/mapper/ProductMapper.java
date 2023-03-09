@@ -1,13 +1,13 @@
 package com.example.groceriesapp.mapper;
 
-import com.example.groceriesapp.dto.ProductDTO;
+import com.example.groceriesapp.dto.ProductDto;
 import com.example.groceriesapp.entity.ProductDetails;
 
 public class ProductMapper {
 
 
-    public static ProductDTO toProductDTO(ProductDetails productDetails) {
-        return new  ProductDTO(
+    public static ProductDto toProductDTO(ProductDetails productDetails) {
+        return new ProductDto(
                 productDetails.getId(),
                 productDetails.getCategoryId(),
                 productDetails.getName(),
