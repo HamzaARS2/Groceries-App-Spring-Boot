@@ -5,6 +5,7 @@ import com.example.groceriesapp.dto.ProductDto;
 import com.example.groceriesapp.entity.FavoriteProduct;
 import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.FavoriteProductRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,8 @@ public class FavoriteProductService {
         repository.deleteById(id);
     }
 
+
+    @Transactional
     public void removeFavoriteProduct(Integer productId, String customerId) {
         repository.deleteByCustomerIdAndProductId(customerId, productId);
     }
