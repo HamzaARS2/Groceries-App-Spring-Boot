@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface FavoriteProductRepo extends JpaRepository<FavoriteProduct, Integer> {
     List<FavoriteProduct> findByCustomerId(String id);
-    @Query("DELETE FROM FavoriteProduct p WHERE p.customerId = :customerId AND p.productId = :productId")
     void deleteByCustomerIdAndProductId(String customerId, Integer productId);
 }
