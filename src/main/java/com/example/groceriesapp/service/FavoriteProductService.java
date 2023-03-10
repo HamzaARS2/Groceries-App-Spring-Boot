@@ -43,4 +43,7 @@ public class FavoriteProductService {
         repository.deleteById(id);
     }
 
+    public void removeFavoriteProduct(Integer productId, String customerId) {
+        repository.deleteByCustomerIdAndProductId(customerId, productId);
+    }
 }

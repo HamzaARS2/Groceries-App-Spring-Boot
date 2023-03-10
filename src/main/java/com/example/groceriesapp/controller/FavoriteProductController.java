@@ -31,4 +31,13 @@ public class FavoriteProductController {
     public void deleteFavoriteProduct(@PathVariable("id") Integer id) {
         service.removeProductFromCustomerFavorites(id);
     }
+
+    @DeleteMapping("/delete/{productId}/{customerId}")
+    public void deleteFavoriteProduct(
+            @PathVariable("productId") Integer productId,
+            @PathVariable("customerId") String customerId
+    ) {
+        service.removeFavoriteProduct(productId, customerId);
+
+    }
 }
