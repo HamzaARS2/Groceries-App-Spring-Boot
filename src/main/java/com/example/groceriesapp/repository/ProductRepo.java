@@ -30,7 +30,7 @@ public interface ProductRepo extends JpaRepository<ProductDetails,Integer> {
             "WHERE p.isExclusive = true " +
             "UNION " +
             "SELECT p " +
-            "FROM ProductDetails p ORDER BY p.rating DESC LIMIT 2")
+            "FROM ProductDetails p ORDER BY p.rating DESC LIMIT 7")
     List<ProductDetails> findMostRatedAndExclusive();
 
 //    @Query("SELECT * " +
