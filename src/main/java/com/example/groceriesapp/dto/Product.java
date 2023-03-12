@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDto {
+public class Product {
     private Integer id;
     private Integer categoryId;
     private String name;
@@ -17,5 +17,4 @@ public class ProductDto {
     private String priceUnit;
     private String image;
     private Boolean isExclusive;
-    private OnSaleInfo onSaleInfo;
 }

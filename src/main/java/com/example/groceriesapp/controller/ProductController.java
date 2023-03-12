@@ -1,12 +1,16 @@
 package com.example.groceriesapp.controller;
 
+import com.example.groceriesapp.dto.Product;
 import com.example.groceriesapp.dto.ProductDto;
 import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/products")
@@ -22,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> findAllProducts() {
+    public List<Product> findAllProducts() {
         return service.getProducts();
     }
 
@@ -43,17 +47,22 @@ public class ProductController {
 
 
     @GetMapping("/most_rated")
-    public List<ProductDto> findMostRatedProducts() {
+    public List<Product> findMostRatedProducts() {
         return service.getMostRatedProducts();
     }
 
     @GetMapping("/exclusive")
-    public List<ProductDto> findExclusiveProducts() {
+    public List<Product> findExclusiveProducts() {
         return service.getExclusiveProducts();
     }
 
+    @GetMapping("/shop")
+    public List<ProductDetails> findProducts() {
+        return service.getShopProducts();
+    }
+
     @GetMapping("/search")
-    public List<ProductDto> searchProductsByName(@RequestParam String query) {
+    public List<Product> searchProductsByName(@RequestParam String query) {
         return service.searchProductsByName(query);
     }
 

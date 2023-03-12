@@ -24,10 +24,13 @@ public class ProductDetails {
     private String priceUnit;
     private String nutrition;
     private String image;
+    @Column(name = "discount_id")
+    private Integer discountId;
     @Column(name = "is_exclusive")
     private boolean isExclusive;
-
-    @NonNull
     private float rating;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "discount_id", referencedColumnName = "id", updatable = false, insertable = false)
+    private Discount discount;
 
 }

@@ -1,7 +1,7 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.dto.CartItemDto;
-import com.example.groceriesapp.dto.ProductDto;
+import com.example.groceriesapp.dto.Product;
 import com.example.groceriesapp.entity.CartItem;
 import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.CartItemRepo;
@@ -22,7 +22,7 @@ public class CartItemService {
         List<CartItem> cartItems = repository.findByCustomerId(id);
         List<CartItemDto> cartItemDtos = new ArrayList<>();
         for (CartItem cartItem : cartItems) {
-            ProductDto productDto = ProductMapper.toProductDTO(cartItem.getProductDetails());
+            Product product = ProductMapper.toProduct(cartItem.getProductDetails());
             CartItemDto cartItemDto = new CartItemDto(
                     cartItem.getId(),
                     cartItem.getCustomerId(),
@@ -30,7 +30,7 @@ public class CartItemService {
                     cartItem.getQuantity(),
                     cartItem.getCreatedAt().toString(),
                     cartItem.getUpdatedAt().toString(),
-                    productDto
+                    product
             );
             cartItemDtos.add(cartItemDto);
         }

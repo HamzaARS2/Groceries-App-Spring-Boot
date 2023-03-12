@@ -10,14 +10,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OnSaleProductDto {
-
-    private Integer id;
-    private Integer productId;
+public class OnSaleInfo {
     private BigDecimal salePrice;
     private BigDecimal discountPercentage;
     private Date startDate;
     private Date endDate;
-
-    private Product product;
 }

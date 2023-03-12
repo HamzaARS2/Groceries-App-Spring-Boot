@@ -14,13 +14,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "on_sale_products")
-public class OnSaleProduct {
+@Table(name = "discounts")
+public class Discount {
 
     @Id @GeneratedValue
     private Integer id;
-    @NonNull
-    private Integer productId;
     @NonNull
     @Column(name = "sale_price")
     private BigDecimal salePrice;
@@ -36,8 +34,5 @@ public class OnSaleProduct {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date endDate;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "productId",referencedColumnName = "id", insertable = false, updatable = false)
-    private ProductDetails productDetails;
 
 }
