@@ -1,6 +1,9 @@
 package com.example.groceriesapp.service;
 
+import com.example.groceriesapp.dto.ProductDetails;
 import com.example.groceriesapp.entity.Product;
+import com.example.groceriesapp.entity.Review;
+import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +19,21 @@ public class ProductService {
     @Autowired
     private ProductRepo repository;
 
+    @Autowired
+    private ReviewService reviewService;
+
 
 
     public List<Product> getProductsDetails() {
         return repository.findAll();
+    }
+
+    public ProductDetails getProductDetailsById(int id) {
+        Product product = repository.findById(id).orElse(null);
+        if (product == null) return null;
+        List<Review> reviews = reviewService.getReviewsByProductId(id);
+        List<Product> similarProducts = repository.findProductsByCategoryId(product.getCategoryId());
+        return ProductMapper.toProductDetails(product, reviews, similarProducts);
     }
 
     public Product insertProduct(Product Product) {

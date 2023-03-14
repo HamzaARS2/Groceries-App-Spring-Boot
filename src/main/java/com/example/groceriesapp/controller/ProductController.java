@@ -1,5 +1,6 @@
 package com.example.groceriesapp.controller;
 
+import com.example.groceriesapp.dto.ProductDetails;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,6 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService service;
-
-
-
-    @GetMapping("/details")
-    public List<Product> findAllProductsDetails() {
-        return service.getProductsDetails();
-    }
 
     @GetMapping
     public List<Product> findAllProducts() {
@@ -50,6 +44,11 @@ public class ProductController {
     @GetMapping("/search")
     public List<Product> searchProductsByName(@RequestParam String query) {
         return service.searchProductsByName(query);
+    }
+
+    @GetMapping("/details/{id}")
+    public ProductDetails getProductDetailsById(Integer id) {
+        return service.getProductDetailsById(id);
     }
 
     @DeleteMapping("/delete/{id}")
