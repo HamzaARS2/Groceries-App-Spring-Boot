@@ -32,12 +32,10 @@ public class CartItem {
     private int quantity;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
     @OneToOne
