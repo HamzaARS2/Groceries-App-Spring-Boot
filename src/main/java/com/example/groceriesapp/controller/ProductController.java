@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @GetMapping("/details/{id}")
-    public ProductDetails getProductDetailsById(Integer id) {
+    public ProductDetails getProductDetailsById(@PathVariable("id") Integer id) {
         return service.getProductDetailsById(id);
     }
 
