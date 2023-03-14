@@ -33,6 +33,7 @@ public class ProductService {
         if (product == null) return null;
         List<Review> reviews = reviewService.getReviewsByProductId(id);
         List<Product> similarProducts = repository.findProductsByCategoryId(product.getCategoryId());
+        similarProducts.removeIf(item -> item.getId().equals(product.getId()));
         return ProductMapper.toProductDetails(product, reviews, similarProducts);
     }
 
