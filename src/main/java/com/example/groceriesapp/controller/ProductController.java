@@ -1,16 +1,11 @@
 package com.example.groceriesapp.controller;
 
-import com.example.groceriesapp.dto.Product;
-import com.example.groceriesapp.dto.ProductDto;
-import com.example.groceriesapp.entity.ProductDetails;
+import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/products")
@@ -21,7 +16,7 @@ public class ProductController {
 
 
     @GetMapping("/details")
-    public List<ProductDetails> findAllProductsDetails() {
+    public List<Product> findAllProductsDetails() {
         return service.getProductsDetails();
     }
 
@@ -31,33 +26,24 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ProductDetails addProduct(@RequestBody ProductDetails product) {
+    public Product addProduct(@RequestBody Product product) {
         return service.insertProduct(product);
     }
 
     @PutMapping("/update/{id}")
-    public ProductDetails updateProduct(@PathVariable Integer id, @RequestBody ProductDetails product) {
+    public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
         return service.updateProduct(id,product);
     }
 
     @GetMapping("/{id}")
-    public ProductDetails findProductById(@PathVariable Integer id) {
-        return service.getProductDetailsById(id);
+    public Product findProductById(@PathVariable Integer id) {
+        return service.getProductById(id);
     }
 
 
-    @GetMapping("/most_rated")
-    public List<Product> findMostRatedProducts() {
-        return service.getMostRatedProducts();
-    }
-
-    @GetMapping("/exclusive")
-    public List<Product> findExclusiveProducts() {
-        return service.getExclusiveProducts();
-    }
 
     @GetMapping("/shop")
-    public List<ProductDetails> findProducts() {
+    public List<Product> findProducts() {
         return service.getShopProducts();
     }
 

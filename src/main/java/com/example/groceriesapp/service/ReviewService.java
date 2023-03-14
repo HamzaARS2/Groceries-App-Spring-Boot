@@ -1,6 +1,6 @@
 package com.example.groceriesapp.service;
 
-import com.example.groceriesapp.entity.ProductDetails;
+import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.entity.Review;
 import com.example.groceriesapp.repository.ProductRepo;
 import com.example.groceriesapp.repository.ReviewRepo;
@@ -30,7 +30,7 @@ public class ReviewService {
     }
 
     private void updateRating(float rating, Integer id) throws NullPointerException {
-        ProductDetails product = productRepo.findById(id).orElse(null);
+        Product product = productRepo.findById(id).orElse(null);
         if (product != null) {
             float currentRating = product.getRating();
             if (currentRating == 0.0F) {

@@ -29,5 +29,5 @@ public class FavoriteProduct {
 
     @OneToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id", insertable = false, updatable = false)
-    private ProductDetails productDetails;
+    private Product product;
 }

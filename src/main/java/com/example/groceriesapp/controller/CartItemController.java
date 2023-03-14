@@ -17,7 +17,7 @@ public class CartItemController {
 
 
      @GetMapping("/{id}")
-    public List<CartItemDto> getCartItems(@PathVariable String id) {
+    public List<CartItem> getCartItems(@PathVariable String id) {
         return service.getCustomerCartItems(id);
     }
 

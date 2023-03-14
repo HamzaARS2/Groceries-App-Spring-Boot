@@ -1,7 +1,6 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.dto.CartItemDto;
-import com.example.groceriesapp.dto.Product;
 import com.example.groceriesapp.entity.CartItem;
 import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.CartItemRepo;
@@ -18,24 +17,8 @@ public class CartItemService {
     private CartItemRepo repository;
 
 
-    public List<CartItemDto> getCustomerCartItems(String id) {
-        List<CartItem> cartItems = repository.findByCustomerId(id);
-        List<CartItemDto> cartItemDtos = new ArrayList<>();
-        for (CartItem cartItem : cartItems) {
-            Product product = ProductMapper.toProduct(cartItem.getProductDetails());
-            CartItemDto cartItemDto = new CartItemDto(
-                    cartItem.getId(),
-                    cartItem.getCustomerId(),
-                    cartItem.getProductId(),
-                    cartItem.getQuantity(),
-                    cartItem.getCreatedAt().toString(),
-                    cartItem.getUpdatedAt().toString(),
-                    product
-            );
-            cartItemDtos.add(cartItemDto);
-        }
-        return cartItemDtos;
-
+    public List<CartItem> getCustomerCartItems(String id) {
+        return repository.findByCustomerId(id);
     }
 
     public CartItem addCartItem(CartItem cartItem) {

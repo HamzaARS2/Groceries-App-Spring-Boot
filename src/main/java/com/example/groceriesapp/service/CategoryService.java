@@ -1,7 +1,6 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.entity.Category;
-import com.example.groceriesapp.entity.ProductDetails;
 import com.example.groceriesapp.repository.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

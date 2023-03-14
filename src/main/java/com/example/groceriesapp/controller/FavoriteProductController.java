@@ -18,7 +18,7 @@ public class FavoriteProductController {
 
 
     @GetMapping("/{id}")
-    public List<FavoriteProductDto> getCustomerFavoriteProducts(@PathVariable("id") String id) {
+    public List<FavoriteProduct> getCustomerFavoriteProducts(@PathVariable("id") String id) {
         return service.getFavoriteProductsByCustomerId(id);
     }
 

@@ -1,10 +1,6 @@
 package com.example.groceriesapp.service;
 
-import com.example.groceriesapp.dto.Product;
-import com.example.groceriesapp.dto.ProductDto;
-import com.example.groceriesapp.entity.Discount;
-import com.example.groceriesapp.entity.ProductDetails;
-import com.example.groceriesapp.mapper.ProductMapper;
+import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +18,15 @@ public class ProductService {
 
 
 
-    public List<ProductDetails> getProductsDetails() {
+    public List<Product> getProductsDetails() {
         return repository.findAll();
     }
 
-    public ProductDetails insertProduct(ProductDetails Product) {
+    public Product insertProduct(Product Product) {
         return repository.save(Product);
     }
 
-    public List<ProductDetails> insertProducts(List<ProductDetails> products) {
+    public List<Product> insertProducts(List<Product> products) {
         return repository.saveAll(products);
     }
 
@@ -39,8 +35,8 @@ public class ProductService {
     }
 
 
-    public ProductDetails updateProduct(Integer id, ProductDetails updatedProduct) {
-        ProductDetails product = repository.findById(id).orElse(null);
+    public Product updateProduct(Integer id, Product updatedProduct) {
+        Product product = repository.findById(id).orElse(null);
         if (product != null) {
             product.setCategoryId(updatedProduct.getCategoryId());
             product.setName(updatedProduct.getName());
@@ -54,29 +50,22 @@ public class ProductService {
         return null;
     }
 
-    public ProductDetails getProductDetailsById(Integer id) {
+    public Product getProductById(Integer id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<Product> getExclusiveProducts() {
-        return repository.findByIsExclusiveIsTrue();
-    }
-
-    public List<Product> getMostRatedProducts() {
-        return repository.findByMostRated();
-    }
 
     public List<Product> searchProductsByName(String query) {
         return repository.findByNameContaining(query);
     }
 
-    public List<ProductDetails> getShopProducts() {
-        List<ProductDetails> products =  repository.findMostRatedAndExclusive();
-        List<ProductDetails> discountProducts = repository.findAllWithDiscount();
+    public List<Product> getShopProducts() {
+        List<Product> products =  repository.findMostRatedAndExclusive();
+        List<Product> discountProducts = repository.findAllWithDiscount();
         return Stream.of(products,discountProducts)
                 .flatMap(Collection::stream)
                 .distinct()
-                .sorted(Comparator.comparing(ProductDetails::getId))
+                .sorted(Comparator.comparing(Product::getId))
                 .collect(Collectors.toList());
     }
 

@@ -1,5 +1,6 @@
 package com.example.groceriesapp.dto;
 
+import com.example.groceriesapp.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

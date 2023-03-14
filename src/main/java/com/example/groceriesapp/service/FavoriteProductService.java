@@ -1,7 +1,6 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.dto.FavoriteProductDto;
-import com.example.groceriesapp.dto.Product;
 import com.example.groceriesapp.entity.FavoriteProduct;
 import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.FavoriteProductRepo;
@@ -19,21 +18,8 @@ public class FavoriteProductService {
     private FavoriteProductRepo repository;
 
 
-    public List<FavoriteProductDto> getFavoriteProductsByCustomerId(String id) {
-        List<FavoriteProduct> favoriteProducts =  repository.findByCustomerId(id);
-        List<FavoriteProductDto> favoriteProductDtos = new ArrayList<>();
-        for (FavoriteProduct favoriteProduct : favoriteProducts) {
-            Product product = ProductMapper.toProduct(favoriteProduct.getProductDetails());
-            FavoriteProductDto favoriteProductDto = new FavoriteProductDto(
-                    favoriteProduct.getId(),
-                    favoriteProduct.getCustomerId(),
-                    favoriteProduct.getProductId(),
-                    favoriteProduct.getCreatedAt().toString(),
-                    product
-            );
-            favoriteProductDtos.add(favoriteProductDto);
-        }
-        return favoriteProductDtos;
+    public List<FavoriteProduct> getFavoriteProductsByCustomerId(String id) {
+        return repository.findByCustomerId(id);
     }
 
     public void addProductToCustomerFavorites(FavoriteProduct favoriteProduct) {
