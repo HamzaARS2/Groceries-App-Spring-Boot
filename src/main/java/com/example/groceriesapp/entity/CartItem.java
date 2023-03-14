@@ -32,11 +32,13 @@ public class CartItem {
     private int quantity;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updatedAt;
 
     @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
