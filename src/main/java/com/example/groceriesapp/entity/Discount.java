@@ -28,9 +28,11 @@ public class Discount {
     private BigDecimal discountPercentage;
     @NonNull
     @Column(name = "start_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startDate;
     @NonNull
     @Column(name = "end_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endDate;
 
 
