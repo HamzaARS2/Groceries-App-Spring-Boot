@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -27,12 +28,12 @@ public class Discount {
     private BigDecimal discountPercentage;
     @NonNull
     @Column(name = "start_date")
-    @JsonFormat(pattern="yyyy-MM-ddTHH:mm:ss")
-    private Date startDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startDate;
     @NonNull
     @Column(name = "end_date")
-    @JsonFormat(pattern="yyyy-MM-ddTHH:mm:ss")
-    private Date endDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime endDate;
 
 
 }
