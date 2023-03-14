@@ -28,10 +28,10 @@ public class Discount {
     private BigDecimal discountPercentage;
     @NonNull
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private Date startDate;
     @NonNull
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private Date endDate;
 
 
 }
