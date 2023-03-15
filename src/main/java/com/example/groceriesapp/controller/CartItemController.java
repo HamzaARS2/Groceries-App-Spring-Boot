@@ -2,6 +2,7 @@ package com.example.groceriesapp.controller;
 
 import com.example.groceriesapp.dto.CartItemDto;
 import com.example.groceriesapp.entity.CartItem;
+import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +22,9 @@ public class CartItemController {
         return service.getCustomerCartItems(id);
     }
 
-    @PostMapping("/create")
-    public CartItem addCartItem(@RequestBody CartItem cartItem) {
-        return service.addCartItem(cartItem);
-    }
-
-    @PostMapping("/multiple/create")
-    public void addMultipleCartItems(@RequestBody List<CartItem> cartItems) {
-         service.saveMultipleCartItems(cartItems);
+    @PostMapping("/create/{customerId}/{productId}")
+    public CartItem addCartItem(@PathVariable("customerId") String customerId, @PathVariable("productId") int productId) {
+        return service.addCartItem(customerId, productId);
     }
 
     @DeleteMapping("/delete/{id}")

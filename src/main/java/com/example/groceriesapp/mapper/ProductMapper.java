@@ -2,6 +2,7 @@ package com.example.groceriesapp.mapper;
 
 
 import com.example.groceriesapp.dto.ProductDetails;
+import com.example.groceriesapp.entity.CartItem;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.entity.Review;
 
@@ -27,6 +28,9 @@ public class ProductMapper {
                 similarProducts
         );
     }
+
+
+
 
 }
 

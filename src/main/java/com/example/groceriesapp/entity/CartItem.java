@@ -45,5 +45,10 @@ public class CartItem {
     private Product product;
 
 
+    public CartItem(String customerId, int productId, int quantity) {
+        this.customerId = customerId;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
 
 }
