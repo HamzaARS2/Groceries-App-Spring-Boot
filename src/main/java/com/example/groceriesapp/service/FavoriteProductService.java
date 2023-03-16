@@ -22,8 +22,8 @@ public class FavoriteProductService {
         return repository.findByCustomerId(id);
     }
 
-    public void addProductToCustomerFavorites(FavoriteProduct favoriteProduct) {
-        repository.save(favoriteProduct);
+    public FavoriteProduct addProductToCustomerFavorites(int productId, String customerId) {
+        return repository.save(new FavoriteProduct(productId, customerId));
     }
 
     public void removeProductFromCustomerFavorites(Integer id) {

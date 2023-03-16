@@ -32,4 +32,9 @@ public class FavoriteProduct {
     @OneToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id", insertable = false, updatable = false)
     private Product product;
+
+    public FavoriteProduct(int productId, String customerId) {
+        this.productId = productId;
+        this.customerId = customerId;
+    }
 }

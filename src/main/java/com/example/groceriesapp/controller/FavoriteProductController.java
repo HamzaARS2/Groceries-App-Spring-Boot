@@ -22,9 +22,9 @@ public class FavoriteProductController {
         return service.getFavoriteProductsByCustomerId(id);
     }
 
-    @PostMapping("/create")
-    public void saveFavoriteProduct(@RequestBody FavoriteProduct favoriteProduct) {
-        service.addProductToCustomerFavorites(favoriteProduct);
+    @PostMapping("/create/{productId}/{customerId}")
+    public FavoriteProduct saveFavoriteProduct(@PathVariable("productId") int productId, @PathVariable("customerId") String customerId) {
+        return service.addProductToCustomerFavorites(productId, customerId);
     }
 
     @DeleteMapping("/delete/{id}")
