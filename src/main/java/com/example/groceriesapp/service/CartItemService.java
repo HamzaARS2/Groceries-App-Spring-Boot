@@ -32,4 +32,12 @@ public class CartItemService {
     public void deleteCartItem(Integer id) {
         repository.deleteById(id);
     }
+
+    public List<CartItem> saveMultipleCartItems(String customerId, int[] productIds) {
+        List<CartItem> savedCartItems = new ArrayList<>();
+        for (int id : productIds) {
+            savedCartItems.add(addCartItem(customerId, id));
+        }
+        return savedCartItems;
+    }
 }

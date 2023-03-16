@@ -27,6 +27,11 @@ public class CartItemController {
         return service.addCartItem(customerId, productId);
     }
 
+    @PostMapping("/create/multiple/{customerId}")
+    public List<CartItem> addMultipleCartItems(@PathVariable("customerId") String customerId, @RequestBody int [] productIds) {
+         return service.saveMultipleCartItems(customerId, productIds);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteCartItem(@PathVariable("id") Integer id) {
          service.deleteCartItem(id);
