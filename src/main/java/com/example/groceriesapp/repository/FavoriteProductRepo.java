@@ -9,4 +9,6 @@ import java.util.List;
 public interface FavoriteProductRepo extends JpaRepository<FavoriteProduct, Integer> {
     List<FavoriteProduct> findByCustomerId(String id);
     void deleteByCustomerIdAndProductId(String customerId, Integer productId);
+
+    FavoriteProduct findByCustomerIdAndProductId(String customerId, int productId);
 }
