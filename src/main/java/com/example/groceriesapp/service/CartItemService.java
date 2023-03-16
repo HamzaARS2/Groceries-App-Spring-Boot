@@ -25,7 +25,7 @@ public class CartItemService {
     public CartItem addCartItem(String customerId, int productId) {
         CartItem exisingCartItem = repository.findByCustomerIdAndProductId(customerId, productId);
         if (exisingCartItem != null)
-            return null;
+            return exisingCartItem;
         return repository.save(new CartItem(customerId, productId, 1));
     }
 
