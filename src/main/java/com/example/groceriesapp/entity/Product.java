@@ -34,7 +34,7 @@ public class Product {
     private boolean isExclusive;
     private float rating;
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", insertable = false, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.EAGER)

@@ -74,8 +74,8 @@ public class ProductService {
     }
 
 
-    public Page<Product> searchProductsByName(String query, int offset, int limit) {
-        Pageable pageable = PageRequest.of(offset, limit, Sort.by(query));
+    public Page<Product> searchProductsByName(String query, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
         return repository.findByNameContaining(query, pageable);
     }
 
