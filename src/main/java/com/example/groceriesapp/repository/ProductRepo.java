@@ -19,7 +19,7 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
 
     @Query("SELECT p " +
             "FROM Product p " +
-            "WHERE p.isExclusive = true LIMIT 7" +
+            "WHERE p.isExclusive = true LIMIT 7 " +
             "UNION " +
             "SELECT p " +
             "FROM Product p ORDER BY p.rating DESC LIMIT 7")
