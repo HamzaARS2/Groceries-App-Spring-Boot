@@ -6,6 +6,10 @@ import com.example.groceriesapp.entity.Review;
 import com.example.groceriesapp.mapper.ProductMapper;
 import com.example.groceriesapp.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -70,8 +74,9 @@ public class ProductService {
     }
 
 
-    public List<Product> searchProductsByName(String query) {
-        return repository.findByNameContaining(query);
+    public Page<Product> searchProductsByName(String query, int offset, int limit) {
+        Pageable pageable = PageRequest.of(offset, limit, Sort.by(query));
+        return repository.findByNameContaining(query, pageable);
     }
 
     public List<Product> getShopProducts() {

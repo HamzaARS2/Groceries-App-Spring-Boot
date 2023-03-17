@@ -1,6 +1,8 @@
 package com.example.groceriesapp.repository;
 
 import com.example.groceriesapp.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,7 +19,7 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
 
     @Query("SELECT p " +
             "FROM Product p " +
-            "WHERE p.isExclusive = true " +
+            "WHERE p.isExclusive = true LIMIT 7" +
             "UNION " +
             "SELECT p " +
             "FROM Product p ORDER BY p.rating DESC LIMIT 7")
@@ -29,10 +31,10 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
 //    List<ProductDetails> getAll();
 
 
-    @Query("SELECT p FROM Product p JOIN p.discount d WHERE d.endDate > CURRENT_DATE")
+    @Query("SELECT p FROM Product p JOIN p.discount d WHERE d.endDate > CURRENT_DATE LIMIT 7")
     List<Product> findAllWithDiscount();
 
     @Query("SELECT p FROM Product p WHERE p.name LIKE %:query%")
-    List<Product> findByNameContaining(String query);
+    Page<Product> findByNameContaining(String query, Pageable pageable);
 
 }

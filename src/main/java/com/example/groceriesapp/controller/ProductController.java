@@ -4,6 +4,8 @@ import com.example.groceriesapp.dto.ProductDetails;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,8 +44,8 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public List<Product> searchProductsByName(@RequestParam String query) {
-        return service.searchProductsByName(query);
+    public ResponseEntity<Page<Product>> searchProductsByName(@RequestParam String query, @RequestParam int page, @RequestParam int limit) {
+        return ResponseEntity.ok(service.searchProductsByName(query, page, limit));
     }
 
     @GetMapping("/details/{id}")
