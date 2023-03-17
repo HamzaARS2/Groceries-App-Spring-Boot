@@ -31,7 +31,7 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
 //    List<ProductDetails> getAll();
 
 
-    @Query("SELECT p FROM Product p JOIN p.discount d WHERE d.endDate > CURRENT_DATE LIMIT 7")
+    @Query("SELECT p FROM Product p JOIN p.discount d WHERE d.endDate > CURRENT_DATE")
     List<Product> findAllWithDiscount();
 
     @Query("SELECT p FROM Product p WHERE p.name LIKE %:query%")
