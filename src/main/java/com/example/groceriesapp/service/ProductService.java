@@ -80,7 +80,7 @@ public class ProductService {
         return Stream.of(products,discountProducts)
                 .flatMap(Collection::stream)
                 .distinct()
-                .sorted(Comparator.comparing(Product::getId))
+                .sorted(Comparator.comparing(Product::getCreatedAt))
                 .collect(Collectors.toList());
     }
 
