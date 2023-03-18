@@ -74,8 +74,9 @@ public class ProductService {
     }
 
 
-    public List<Product> searchProductsByName(String query) {
-        return repository.findByNameContaining(query);
+    public List<Product> searchProductsByName(String query, int categoryId) {
+        if (categoryId == 0) return repository.findByNameContaining(query);
+        return repository.findByCategoryAndNameContaining(query, categoryId);
     }
 
     public List<Product> getShopProducts() {

@@ -25,10 +25,6 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
             "FROM Product p ORDER BY p.rating DESC LIMIT 7")
     List<Product> findMostRatedAndExclusive();
 
-//    @Query("SELECT * " +
-//            "FROM ProductDetails p " +
-//            "WHERE p.isExclusive = true ")
-//    List<ProductDetails> getAll();
 
 
     @Query("SELECT p FROM Product p JOIN p.discount d WHERE d.endDate > CURRENT_DATE")
@@ -36,5 +32,8 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
 
     @Query("SELECT p FROM Product p WHERE p.name LIKE %:query%")
     List<Product> findByNameContaining(String query);
+
+    @Query("SELECT p FROM Product p WHERE p.name LIKE %:query% AND p.categoryId =:categoryId")
+    List<Product> findByCategoryAndNameContaining(String query, int categoryId);
 
 }
