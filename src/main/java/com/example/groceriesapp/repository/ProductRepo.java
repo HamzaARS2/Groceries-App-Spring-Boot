@@ -35,6 +35,6 @@ public interface ProductRepo extends JpaRepository<Product,Integer> {
     List<Product> findAllWithDiscount();
 
     @Query("SELECT p FROM Product p WHERE p.name LIKE %:query%")
-    Page<Product> findByNameContaining(String query);
+    List<Product> findByNameContaining(String query);
 
 }
