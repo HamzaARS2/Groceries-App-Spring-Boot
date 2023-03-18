@@ -74,9 +74,8 @@ public class ProductService {
     }
 
 
-    public Page<Product> searchProductsByName(String query, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
-        return repository.findByNameContaining(query, pageable);
+    public List<Product> searchProductsByName(String query) {
+        return repository.findByNameContaining(query);
     }
 
     public List<Product> getShopProducts() {

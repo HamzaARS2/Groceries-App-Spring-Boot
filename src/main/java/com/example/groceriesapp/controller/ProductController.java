@@ -44,10 +44,8 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Page<Product>> searchProductsByName(
-            @RequestParam("query") String query, @RequestParam("page") int page, @RequestParam("size") int pageSize
-    ) {
-        return ResponseEntity.ok(service.searchProductsByName(query, page, pageSize));
+    public List<Product> searchProductsByName(@RequestParam("query") String query) {
+        return service.searchProductsByName(query);
     }
 
     @GetMapping("/details/{id}")
