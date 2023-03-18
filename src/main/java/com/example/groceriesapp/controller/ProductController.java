@@ -44,7 +44,7 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public List<Product> searchProductsByName(@RequestParam("query") String query, @RequestParam int categoryId) {
+    public List<Product> searchProductsByName(@RequestParam("query") String query, @RequestParam("categoryId") int categoryId) {
         return service.searchProductsByName(query, categoryId);
     }
 
