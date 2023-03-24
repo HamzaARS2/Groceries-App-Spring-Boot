@@ -27,11 +27,11 @@ public class Customer {
     @Column(name = "location_id")
     private Integer locationId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Address address;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Location location;
 }
