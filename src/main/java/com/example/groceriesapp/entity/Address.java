@@ -18,7 +18,6 @@ import java.util.Date;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
     private int id;
     @Column(name = "customer_id")
     private String customerId;
