@@ -41,4 +41,5 @@ public class Product {
     @JoinColumn(name = "discount_id", referencedColumnName = "id", updatable = false, insertable = false)
     private Discount discount;
 
+
 }

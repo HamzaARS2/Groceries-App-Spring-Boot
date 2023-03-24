@@ -20,31 +20,27 @@ public class CustomerService {
         return repository.save(customer);
     }
 
-    public Customer getCustomerById(Integer id) {
+    public Customer getCustomerById(String id) {
         return repository.findById(id).orElse(null);
     }
 
     public Customer updateCustomer(Customer updatedCustomer) {
-        Customer customer = repository.findByDocId(updatedCustomer.getDocId());
+        Customer customer = repository.findById(updatedCustomer.getId()).orElse(null);
         if (customer != null) {
-            System.out.println("updateCustomer not null");
             customer.setName(updatedCustomer.getName());
             customer.setEmail(updatedCustomer.getEmail());
             customer.setPhone(updatedCustomer.getPhone());
             customer.setAddress(updatedCustomer.getAddress());
+            customer.setLocation(updatedCustomer.getLocation());
             return repository.save(customer);
         }
-        System.out.println("updateCustomer null");
 
         return null;
     }
 
-    public String deleteCustomer(Integer id) {
+    public String deleteCustomer(String id) {
         repository.deleteById(id);
         return "Customer deleted Successfully : id = " + id;
     }
 
-    public Customer getCustomerByDocId(String docId) {
-        return repository.findByDocId(docId);
-    }
 }

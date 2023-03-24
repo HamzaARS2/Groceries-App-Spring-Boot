@@ -10,19 +10,28 @@ import lombok.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Customers")
+@Table(name = "customers")
 public class Customer {
-    @Id @GeneratedValue
-    private Integer id;
-    @NonNull
-    @Column(name = "doc_id")
-    private String docId;
+    @Id
+    private String id;
     @NonNull
     private String name;
     @NonNull
     private String email;
     @NonNull
     private String phone;
-    @NonNull
-    private String address;
+
+    @Column(name = "address_id")
+    private Integer addressId;
+
+    @Column(name = "location_id")
+    private Integer locationId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Address address;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Location location;
 }
