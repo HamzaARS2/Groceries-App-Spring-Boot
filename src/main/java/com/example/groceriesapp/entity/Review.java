@@ -50,7 +50,7 @@ public class Review {
 
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "doc_id", insertable = false, updatable = false)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Customer customer;
 
 }
