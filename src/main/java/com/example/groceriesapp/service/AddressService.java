@@ -5,6 +5,8 @@ import com.example.groceriesapp.repository.AddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressService {
 
@@ -27,5 +29,9 @@ public class AddressService {
         existingAddress.setState(address.getState());
         existingAddress.setCountry(address.getCountry());
         return existingAddress;
+    }
+
+    public List<Address> getAllAddresses() {
+        return repository.findAll();
     }
 }

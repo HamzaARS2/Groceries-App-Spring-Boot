@@ -5,6 +5,8 @@ import com.example.groceriesapp.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/address")
 public class AddressController {
@@ -20,5 +22,10 @@ public class AddressController {
     @PutMapping
     public Address updateAddress(@RequestBody Address address) {
         return service.updateAddress(address);
+    }
+
+    @GetMapping
+    public List<Address> getAddresses() {
+        return service.getAllAddresses();
     }
 }
