@@ -3,10 +3,7 @@ package com.example.groceriesapp.controller;
 import com.example.groceriesapp.entity.Address;
 import com.example.groceriesapp.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/address")
@@ -16,7 +13,12 @@ public class AddressController {
     private AddressService service;
 
     @PostMapping
-    public Integer saveAddress(@RequestBody Address address) {
+    public Address createAddress(@RequestBody Address address) {
         return service.saveAddress(address);
+    }
+
+    @PutMapping
+    public Address updateAddress(@RequestBody Address address) {
+        return service.updateAddress(address);
     }
 }

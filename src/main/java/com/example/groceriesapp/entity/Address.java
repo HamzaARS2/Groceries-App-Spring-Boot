@@ -19,16 +19,16 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "customer_id")
-    private String customerId;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    private String phone;
     @Column(name = "street_address")
-    private String addressLine;
+    private String streetAddress;
     private String city;
     private String state;
     private String country;
-    @Column(name = "street_name")
-    private String streetName;
-    private Integer number;
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "created_at")
