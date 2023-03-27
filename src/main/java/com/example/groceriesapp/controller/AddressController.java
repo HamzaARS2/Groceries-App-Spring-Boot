@@ -14,9 +14,9 @@ public class AddressController {
     @Autowired
     private AddressService service;
 
-    @PostMapping
-    public Address createAddress(@RequestBody Address address) {
-        return service.saveAddress(address);
+    @PostMapping("/{customerId}")
+    public Address createAddress(@RequestBody Address address, @PathVariable String customerId) {
+        return service.saveAddress(address, customerId);
     }
 
     @PutMapping

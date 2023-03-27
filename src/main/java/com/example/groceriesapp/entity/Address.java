@@ -19,8 +19,6 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "customer_id")
-    private String customerId;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
