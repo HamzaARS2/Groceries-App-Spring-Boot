@@ -28,7 +28,7 @@ public class AddressService {
         existingAddress.setCity(address.getCity());
         existingAddress.setState(address.getState());
         existingAddress.setCountry(address.getCountry());
-        return existingAddress;
+        return repository.save(existingAddress);
     }
 
     public List<Address> getAllAddresses() {
