@@ -28,7 +28,7 @@ public class Customer {
     private Integer locationId;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Address address;
 
     @OneToOne
