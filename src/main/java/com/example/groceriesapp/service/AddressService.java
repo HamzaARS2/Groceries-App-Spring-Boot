@@ -21,6 +21,8 @@ public class AddressService {
     public Address updateAddress(Address address) {
         Address existingAddress = repository.findById(address.getId()).orElse(null);
         if (existingAddress == null) return null;
+        existingAddress.setCustomerId(address.getCustomerId());
+        existingAddress.setCustomerId(address.getCustomerId());
         existingAddress.setFirstName(address.getFirstName());
         existingAddress.setLastName(address.getLastName());
         existingAddress.setPhone(address.getPhone());
