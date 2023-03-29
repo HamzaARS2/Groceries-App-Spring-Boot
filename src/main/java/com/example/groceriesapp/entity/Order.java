@@ -21,12 +21,9 @@ import java.util.List;
 public class Order{
     @Id @GeneratedValue
     private Integer id;
-    @NonNull
     @Column(name = "customer_id")
-    private Integer customerId;
-    @NonNull
+    private String customerId;
     private String status;
-    @NonNull
     @Column(name = "total_price")
     private BigDecimal totalPrice;
     @CreationTimestamp
@@ -34,6 +31,12 @@ public class Order{
     private Timestamp timestamp;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderId", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
+
+
+    public Order(String customerId, BigDecimal totalPrice) {
+        this.customerId = customerId;
+        this.totalPrice = totalPrice;
+    }
 
 }
 

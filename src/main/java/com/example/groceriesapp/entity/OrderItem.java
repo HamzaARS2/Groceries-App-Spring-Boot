@@ -17,15 +17,11 @@ import java.math.BigDecimal;
 public class OrderItem {
     @Id @GeneratedValue
     private Integer id;
-    @NonNull
     @Column(name = "order_id")
     private Integer orderId;
-    @NonNull
     @Column(name = "product_id")
     private Integer productId;
-    @NonNull
     private Integer quantity;
-    @NonNull
     @Column(name = "subtotal_price")
     private BigDecimal subTotalPrice;
 

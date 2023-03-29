@@ -1,5 +1,6 @@
 package com.example.groceriesapp.controller;
 
+import com.example.groceriesapp.dto.OrderDto;
 import com.example.groceriesapp.entity.Category;
 import com.example.groceriesapp.entity.Order;
 import com.example.groceriesapp.service.CategoryService;
@@ -25,6 +26,11 @@ public class OrderController {
     @PostMapping("/add")
     public Order addOrder(@RequestBody Order order) {
         return service.insertOrder(order);
+    }
+
+    @PostMapping
+    public Order createOrder(@RequestBody OrderDto orderDto) {
+        return service.saveOrder(orderDto);
     }
 
 
