@@ -13,12 +13,12 @@ import com.example.groceriesapp.response.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Service
 public class OrderService {
-    private final Random random = new Random();
     @Autowired
     private OrderRepo repository;
 
@@ -27,6 +27,8 @@ public class OrderService {
 
     @Autowired
     private CustomerRepo customerRepo;
+
+    private final Random random = new Random();
 
 
     public List<Order> getOrders() {
@@ -57,20 +59,21 @@ public class OrderService {
 
     public OrderResponse saveOrder(OrderDto orderDto) {
         Order newOrder = repository.save(new Order(orderDto.getCustomerId(), orderDto.getTotalPrice(), generateTrackNumber()));
+        List<OrderItem> orderItems = new ArrayList<>();
         for (OrderItemDto orderItemDto : orderDto.getOrderItemDtos()) {
             OrderItem orderItem = new OrderItem();
-
             orderItem.setOrderId(newOrder.getId());
             orderItem.setProductId(orderItemDto.getProductId());
             orderItem.setQuantity(orderItemDto.getQuantity());
             orderItem.setSubTotalPrice(orderItemDto.getSubTotalPrice());
-
-            orderItemRepo.save(orderItem);
+            orderItems.add(orderItemRepo.save(orderItem));
         }
+        newOrder.setOrderItems(orderItems);
         Customer customer = customerRepo.findById(orderDto.getCustomerId()).orElse(null);
         return OrderMapper.asOrderResponse(newOrder,
                 customer == null ? null : customer.getAddress());
     }
+
 
     public String generateTrackNumber() {
         long timestamp = System.currentTimeMillis();
