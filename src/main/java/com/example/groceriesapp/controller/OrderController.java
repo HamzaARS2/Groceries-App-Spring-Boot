@@ -3,6 +3,7 @@ package com.example.groceriesapp.controller;
 import com.example.groceriesapp.dto.OrderDto;
 import com.example.groceriesapp.entity.Category;
 import com.example.groceriesapp.entity.Order;
+import com.example.groceriesapp.response.OrderResponse;
 import com.example.groceriesapp.service.CategoryService;
 import com.example.groceriesapp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody OrderDto orderDto) {
+    public OrderResponse createOrder(@RequestBody OrderDto orderDto) {
         return service.saveOrder(orderDto);
     }
 
