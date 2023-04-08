@@ -18,7 +18,6 @@ public class OrderController {
     private OrderService service;
 
 
-
     @GetMapping
     public List<Order> findAllOrders() {
         return service.getOrders();
