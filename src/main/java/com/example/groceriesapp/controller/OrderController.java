@@ -40,7 +40,7 @@ public class OrderController {
     }
 
     @GetMapping("/customer/{id}")
-    public List<Order> getOrdersByCustomerId(@PathVariable Integer id) {
+    public List<Order> getOrdersByCustomerId(@PathVariable String id) {
         return service.getOrdersByCustomerId(id);
     }
 
