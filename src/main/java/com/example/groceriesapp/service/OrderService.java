@@ -43,7 +43,7 @@ public class OrderService {
         return repository.saveAll(orders);
     }
 
-    public List<Order> getOrdersByCustomerId(Integer id) {
+    public List<Order> getOrdersByCustomerId(String id) {
         return repository.findAllByCustomerId(id);
     }
 
