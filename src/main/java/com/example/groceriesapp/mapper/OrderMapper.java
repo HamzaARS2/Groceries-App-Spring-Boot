@@ -11,6 +11,7 @@ public class OrderMapper {
                 order.getTrackNumber(), order.getStatus(),
                 order.getEstimatedDeliveryDate(), address,
                 order.getPaymentInfo(), order.getTotalPrice(),
+                order.getTimestamp(),
                 order.getOrderItems()
         );
     }
