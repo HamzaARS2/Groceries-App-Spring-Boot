@@ -29,7 +29,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public OrderResponse createOrder(@RequestBody OrderDto orderDto) {
+    public Order createOrder(@RequestBody OrderDto orderDto) {
         return service.saveOrder(orderDto);
     }
 

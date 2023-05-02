@@ -57,7 +57,7 @@ public class OrderService {
         return "Order deleted Successfully : id = " + id;
     }
 
-    public OrderResponse saveOrder(OrderDto orderDto) {
+    public Order saveOrder(OrderDto orderDto) {
         Order newOrder = repository.save(new Order(orderDto.getCustomerId(), orderDto.getTotalPrice(), generateTrackNumber()));
         List<OrderItem> orderItems = new ArrayList<>();
         for (OrderItemDto orderItemDto : orderDto.getOrderItemDtos()) {
@@ -69,9 +69,7 @@ public class OrderService {
             orderItems.add(orderItemRepo.save(orderItem));
         }
         newOrder.setOrderItems(orderItems);
-        Customer customer = customerRepo.findById(orderDto.getCustomerId()).orElse(null);
-        return OrderMapper.asOrderResponse(newOrder,
-                customer == null ? null : customer.getAddress());
+        return newOrder;
     }
 
 
