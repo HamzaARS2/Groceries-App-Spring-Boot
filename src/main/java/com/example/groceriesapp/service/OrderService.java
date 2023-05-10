@@ -58,7 +58,7 @@ public class OrderService {
     }
 
     public Order saveOrder(OrderDto orderDto) {
-        Order newOrder = repository.save(new Order(orderDto.getCustomerId(), orderDto.getTotalPrice(), generateTrackNumber()));
+        Order newOrder = repository.save(new Order(orderDto.getCustomerId(), orderDto.getAddressId(), orderDto.getTotalPrice(), generateTrackNumber()));
         List<OrderItem> orderItems = new ArrayList<>();
         for (OrderItemDto orderItemDto : orderDto.getOrderItemDtos()) {
             OrderItem orderItem = new OrderItem();

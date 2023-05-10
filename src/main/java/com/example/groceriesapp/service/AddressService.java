@@ -38,6 +38,8 @@ public class AddressService {
         existingAddress.setCity(address.getCity());
         existingAddress.setState(address.getState());
         existingAddress.setCountry(address.getCountry());
+        existingAddress.setLatitude(address.getLatitude());
+        existingAddress.setLongitude(address.getLongitude());
         return repository.save(existingAddress);
     }
 

@@ -25,6 +25,9 @@ public class Order{
     private Integer id;
     @Column(name = "customer_id")
     private String customerId;
+
+    @Column(name = "address_id")
+    private Integer addressId;
     private String status;
     @Column(name = "track_number")
     private String trackNumber;
@@ -44,10 +47,11 @@ public class Order{
 
 
 
-    public Order(String customerId, BigDecimal totalPrice, String trackNumber) {
+    public Order(String customerId,Integer addressId, BigDecimal totalPrice, String trackNumber) {
         this.customerId = customerId;
         this.totalPrice = totalPrice;
         this.trackNumber = trackNumber;
+        this.addressId = addressId;
         this.status = "Pending";
         this.paymentInfo = "CASH";
         this.estimatedDeliveryDate = LocalDate.now().plusDays(3);

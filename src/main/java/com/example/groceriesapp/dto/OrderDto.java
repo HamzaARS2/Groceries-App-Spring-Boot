@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto {
     private String customerId;
+    private Integer addressId;
     private BigDecimal totalPrice;
     @JsonProperty("orderItems")
     private List<OrderItemDto> orderItemDtos;
