@@ -26,13 +26,13 @@ public class Product {
     @NonNull
     private BigDecimal price;
     private String priceUnit;
-    private String nutrition;
     private String image;
     @Column(name = "discount_id")
     private Integer discountId;
     @Column(name = "is_exclusive")
     private boolean isExclusive;
     private float rating;
+    private Integer stock;
     @CreationTimestamp
     @Column(name = "created_at", insertable = false, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -1,6 +1,7 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.dto.ProductDetails;
+import com.example.groceriesapp.entity.Order;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.entity.Review;
 import com.example.groceriesapp.mapper.ProductMapper;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -26,6 +28,8 @@ public class ProductService {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private OrderService orderService;
 
 
     public List<Product> getProductsDetails() {
@@ -62,7 +66,6 @@ public class ProductService {
             product.setDescription(updatedProduct.getDescription());
             product.setPrice(updatedProduct.getPrice());
             product.setPriceUnit(updatedProduct.getPriceUnit());
-            product.setNutrition(updatedProduct.getNutrition());
             product.setImage(updatedProduct.getImage());
             return repository.save(product);
         }
@@ -80,12 +83,12 @@ public class ProductService {
     }
 
     public List<Product> getShopProducts() {
-        List<Product> products =  repository.findMostRatedAndExclusive();
+        List<Product> products = repository.findMostRatedAndExclusive();
         List<Product> discountProducts = repository.findAllWithDiscount();
-        return Stream.of(products,discountProducts)
+        return Stream.of(products, discountProducts)
                 .flatMap(Collection::stream)
                 .distinct()
-                .sorted(Comparator.comparing(Product::getCreatedAt,Comparator.reverseOrder()))
+                .sorted(Comparator.comparing(Product::getCreatedAt, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
     }
 
@@ -96,4 +99,12 @@ public class ProductService {
     }
 
 
+    public List<Product> getOrderProducts(Integer orderId) {
+        Order order = orderService.getOrderById(orderId);
+        List<Product> orderProducts = new ArrayList<>();
+        order.getOrderItems().forEach(item ->
+                repository.findById(item.getProductId()).ifPresent(orderProducts::add)
+        );
+        return orderProducts;
+    }
 }

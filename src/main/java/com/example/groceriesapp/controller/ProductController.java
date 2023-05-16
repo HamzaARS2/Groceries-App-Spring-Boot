@@ -37,6 +37,10 @@ public class ProductController {
     }
 
 
+    @GetMapping("/order/{orderId}")
+    public List<Product> findOrderProducts(@PathVariable Integer orderId) {
+        return service.getOrderProducts(orderId);
+    }
 
     @GetMapping("/shop")
     public List<Product> findProducts() {
