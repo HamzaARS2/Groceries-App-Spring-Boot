@@ -1,5 +1,6 @@
 package com.example.groceriesapp.service;
 
+import com.example.groceriesapp.dto.ReviewDto;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.entity.Review;
 import com.example.groceriesapp.repository.ProductRepo;
@@ -29,14 +30,15 @@ public class ReviewService {
     }
 
 
-    public Review saveReview(Review review) {
-        Review existingReview = repository.findByCustomerIdAndProductId(review.getCustomerId(), review.getProductId()).orElse(null);
+    public Review saveReview(ReviewDto reviewDto) {
+        Review existingReview = repository.findByCustomerIdAndProductId(reviewDto.getCustomerId(), reviewDto.getProductId()).orElse(null);
         if (existingReview != null) {
-            existingReview.setRating(review.getRating());
-            existingReview.setComment(review.getComment());
+            existingReview.setRating(reviewDto.getRating());
+            existingReview.setComment(reviewDto.getComment());
             return repository.save(existingReview);
         }
-        return repository.save(review);
+        Review newReview = new Review(reviewDto.getProductId(), reviewDto.getCustomerId(), reviewDto.getComment(), reviewDto.getRating());
+        return repository.save(newReview);
     }
 
     private void updateRating(float rating, Integer id) throws NullPointerException {

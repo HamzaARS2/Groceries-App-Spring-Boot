@@ -53,4 +53,11 @@ public class Review {
     @JoinColumn(name = "customer_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Customer customer;
 
+    public Review(Integer productId, String customerId, String comment, float rating) {
+        this.productId = productId;
+        this.customerId = customerId;
+        this.comment = comment;
+        this.rating = rating;
+    }
+
 }

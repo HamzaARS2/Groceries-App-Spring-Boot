@@ -1,5 +1,6 @@
 package com.example.groceriesapp.controller;
 
+import com.example.groceriesapp.dto.ReviewDto;
 import com.example.groceriesapp.entity.Review;
 import com.example.groceriesapp.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class ReviewController {
         return service.getReviewsByProductId(id);
     }
     @PostMapping("/save")
-    public Review saveReview(@RequestBody Review review) {
-        return service.saveReview(review);
+    public Review saveReview(@RequestBody ReviewDto reviewDto) {
+        return service.saveReview(reviewDto);
     }
 
 }
