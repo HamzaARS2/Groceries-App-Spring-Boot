@@ -14,10 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -106,8 +103,11 @@ public class ProductService {
         order.getOrderItems().forEach(item -> {
                     Product product = repository.findById(item.getProductId()).orElse(null);
                     if (product != null) {
-                        Review review = reviewService.getCustomerProductReview(order.getCustomerId(), product.getId()).orElse(null);
-                        ProductReviewDto productReviewDto = ProductMapper.toProductReview(product, review != null);
+                        Optional<Review> review = reviewService.getCustomerProductReview(order.getCustomerId(), product.getId());
+                        ProductReviewDto productReviewDto;
+                        productReviewDto = review.map(
+                                productReview -> ProductMapper.toProductReview(product, productReview.getRating(), true, productReview.getComment()))
+                                .orElseGet(() -> ProductMapper.toProductReview(product, 0, false, ""));
                         orderProducts.add(productReviewDto);
                     }
                 }

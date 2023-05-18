@@ -8,6 +8,7 @@ import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.entity.Review;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductMapper {
 
@@ -30,14 +31,15 @@ public class ProductMapper {
         );
     }
 
-    public static ProductReviewDto toProductReview(Product product, Boolean reviewed) {
+    public static ProductReviewDto toProductReview(Product product, float rating, boolean reviewed, String comment) {
         return new ProductReviewDto(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
                 product.getPriceUnit(),
                 product.getImage(),
-                product.getRating(),
+                rating,
+                comment,
                 reviewed
         );
     }
