@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -41,5 +42,17 @@ public class Product {
     @JoinColumn(name = "discount_id", referencedColumnName = "id", updatable = false, insertable = false)
     private Discount discount;
 
+
+    public float calculateRating(List<Review> reviews) {
+        if (reviews.isEmpty()) {
+            return 0.0F;
+        } else {
+            float totalRating = 0.0F;
+            for (Review rating : reviews) {
+                totalRating += rating.getRating();
+            }
+            return totalRating / reviews.size();
+        }
+    }
 
 }

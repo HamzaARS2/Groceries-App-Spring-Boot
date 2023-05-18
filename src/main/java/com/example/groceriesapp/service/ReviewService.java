@@ -29,8 +29,13 @@ public class ReviewService {
     }
 
 
-    public Review createReview(Review review) {
-        updateRating(review.getRating(),review.getProductId());
+    public Review saveReview(Review review) {
+        Review existingReview = repository.findByCustomerIdAndProductId(review.getCustomerId(), review.getProductId()).orElse(null);
+        if (existingReview != null) {
+            existingReview.setRating(review.getRating());
+            existingReview.setComment(review.getComment());
+            return repository.save(existingReview);
+        }
         return repository.save(review);
     }
 

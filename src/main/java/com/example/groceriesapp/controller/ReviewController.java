@@ -19,9 +19,9 @@ public class ReviewController {
     public List<Review> getReviewsByProductId(@PathVariable Integer id) {
         return service.getReviewsByProductId(id);
     }
-    @PostMapping("/create")
-    public Review createReview(@RequestBody Review review) {
-        return service.createReview(review);
+    @PostMapping("/save")
+    public Review saveReview(@RequestBody Review review) {
+        return service.saveReview(review);
     }
 
 }

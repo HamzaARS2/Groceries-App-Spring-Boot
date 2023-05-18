@@ -38,6 +38,7 @@ public class ProductService {
         Product product = repository.findById(id).orElse(null);
         if (product == null) return null;
         List<Review> reviews = reviewService.getReviewsByProductId(id);
+        product.setRating(product.calculateRating(reviews));
         List<Product> similarProducts = repository.findProductsByCategoryId(product.getCategoryId());
         similarProducts.removeIf(item -> item.getId().equals(product.getId()));
         return ProductMapper.toProductDetails(product, reviews, similarProducts);
