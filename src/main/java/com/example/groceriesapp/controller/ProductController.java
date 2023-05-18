@@ -1,6 +1,7 @@
 package com.example.groceriesapp.controller;
 
 import com.example.groceriesapp.dto.ProductDetails;
+import com.example.groceriesapp.dto.ProductReviewDto;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ProductController {
 
     @PutMapping("/update/{id}")
     public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
-        return service.updateProduct(id,product);
+        return service.updateProduct(id, product);
     }
 
     @GetMapping("/{id}")
@@ -38,7 +39,7 @@ public class ProductController {
 
 
     @GetMapping("/order/{orderId}")
-    public List<Product> findOrderProducts(@PathVariable Integer orderId) {
+    public List<ProductReviewDto> findOrderProducts(@PathVariable Integer orderId) {
         return service.getOrderProducts(orderId);
     }
 

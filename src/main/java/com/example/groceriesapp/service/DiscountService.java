@@ -15,8 +15,8 @@ public class DiscountService {
     private OneSaleProductRepo repository;
 
 
-    public Discount insertOnSaleProduct(Discount onSaleProduct) {
-        return repository.save(onSaleProduct);
+    public Discount insertOnSaleProduct(Discount discount) {
+        return repository.save(discount);
     }
 
     public List<Discount> getDiscounts() {

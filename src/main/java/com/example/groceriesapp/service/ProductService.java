@@ -1,6 +1,7 @@
 package com.example.groceriesapp.service;
 
 import com.example.groceriesapp.dto.ProductDetails;
+import com.example.groceriesapp.dto.ProductReviewDto;
 import com.example.groceriesapp.entity.Order;
 import com.example.groceriesapp.entity.Product;
 import com.example.groceriesapp.entity.Review;
@@ -99,11 +100,17 @@ public class ProductService {
     }
 
 
-    public List<Product> getOrderProducts(Integer orderId) {
+    public List<ProductReviewDto> getOrderProducts(Integer orderId) {
         Order order = orderService.getOrderById(orderId);
-        List<Product> orderProducts = new ArrayList<>();
-        order.getOrderItems().forEach(item ->
-                repository.findById(item.getProductId()).ifPresent(orderProducts::add)
+        List<ProductReviewDto> orderProducts = new ArrayList<>();
+        order.getOrderItems().forEach(item -> {
+                    Product product = repository.findById(item.getProductId()).orElse(null);
+                    if (product != null) {
+                        Review review = reviewService.getCustomerProductReview(order.getCustomerId(), product.getId()).orElse(null);
+                        ProductReviewDto productReviewDto = ProductMapper.toProductReview(product, review != null);
+                        orderProducts.add(productReviewDto);
+                    }
+                }
         );
         return orderProducts;
     }
