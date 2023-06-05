@@ -24,6 +24,7 @@ public class ProductMapper {
                 product.getImage(),
                 product.getDiscountId(),
                 product.isExclusive(),
+                product.getStock(),
                 product.getRating(),
                 product.getDiscount(),
                 reviews,

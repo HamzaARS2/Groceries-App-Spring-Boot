@@ -25,6 +25,7 @@ public class ProductDetails {
     private String image;
     private Integer discountId;
     private boolean isExclusive;
+    private Integer stock;
     private float rating;
     private Discount discount;
     private List<Review> reviews;
