@@ -1,5 +1,6 @@
 package com.example.groceriesapp.controller;
 
+import com.example.groceriesapp.dto.UpdateTokenRequest;
 import com.example.groceriesapp.entity.Customer;
 import com.example.groceriesapp.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class CustomerController {
     @PutMapping("/update")
     public Customer updateCustomer(@RequestBody Customer customer) {
         return service.updateCustomer(customer);
+    }
+
+    @PutMapping("/token/update/{customerId}")
+    public boolean updateCustomerToken(@PathVariable("customerId") String customerId, @RequestBody UpdateTokenRequest tokenRequest){
+        return service.updateToken(customerId, tokenRequest);
     }
 
     @DeleteMapping("/delete/{id}")

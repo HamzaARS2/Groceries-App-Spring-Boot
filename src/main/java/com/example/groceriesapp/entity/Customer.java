@@ -27,6 +27,8 @@ public class Customer {
     @Column(name = "location_id")
     private Integer locationId;
 
+    private String token;
+
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Address address;

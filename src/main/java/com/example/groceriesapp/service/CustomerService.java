@@ -1,5 +1,6 @@
 package com.example.groceriesapp.service;
 
+import com.example.groceriesapp.dto.UpdateTokenRequest;
 import com.example.groceriesapp.entity.Customer;
 import com.example.groceriesapp.repository.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,12 @@ public class CustomerService {
         return "Customer deleted Successfully : id = " + id;
     }
 
+    public boolean updateToken(String customerId, UpdateTokenRequest tokenRequest) {
+        String token = tokenRequest.getToken();
+        Customer customer = repository.findById(customerId).orElse(null);
+        if (customer == null) return false;
+        customer.setToken(token);
+        repository.save(customer);
+        return true;
+    }
 }
